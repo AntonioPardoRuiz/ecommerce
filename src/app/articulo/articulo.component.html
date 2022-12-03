@@ -1,12 +1,49 @@
 <div class="container">
     <div class="card">
         <div class="card-body">
-          <h3 class="card-title">CATALOGO DE VIDEOS</h3>
+            <div *ngIf="pulsa; else nopulsa">
+               <h3 class="card-title" [ngStyle]="{backgroundColor: getColor()}">YOUR APPS:GRACIAS POR COMPRAR </h3>
+            </div>
+            <ng-template #nopulsa>
+               <h3 class="card-title" [ngStyle]="{backgroundColor: getColorSubscrito()}">YOUR APPS</h3>
+            </ng-template>
           <br>
-          <img src={{articulo.img}} class="img-fluid" alt="Responsive image">
-          <p class="card-text"  style="background-color: wheat;">È universalmente riconosciuto che un lettore che osserva il layout di una pagina viene distratto dal contenuto testuale se questo è leggibile. Lo scopo dell’utilizzo del Lorem Ipsum è che offre una normale distribuzione delle lettere (al contrario di quanto avviene se si utilizzano brevi frasi ripetute, ad esempio “testo qui”), apparendo come un normale blocco di testo leggibile. Molti software di impaginazione e di web design utilizzano Lorem Ipsum come testo modello. Molte versioni del testo sono state prodotte negli anni, a volte casualmente, a volte di proposito (ad esempio inserendo passaggi ironici)</p>
+           <img src={{articulo.img}} class="card-img-top" alt="Responsive image">
+            <div class="row">
+                <h5 class="card-text">{{articulo.nombre}}</h5>
+            </div>
+            <div class="row">
+                <h5 class="card-text">Fecha de Creacion del Software: {{articulo.fechaCreacion}}</h5>
+            </div>
+            <div class="row">
+                <h5 class="card-text">Numero de Ventas: {{articulo.numeroVisitas}}</h5>
+            </div>
+            <div class="row">
+                <h5 class="card-text">Precio: {{articulo.precio}} Euros</h5>
+            </div>
+            <div class="row">
+                <h5 class="card-text">Autor: {{articulo.creador}}</h5>
+            </div>
           <br>
-          <a href="#" class="btn btn-primary">Suscribase a los videos mas punteros</a>
+          <div class="container">
+                <div *ngIf="boton">
+                  <div class="row">
+                    <div class="col">
+                        <button type="button" class="btn btn-primary" data-toggle="button" (click)="subscribirse()">Instalar</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-warning" data-toggle="button" (click)="eliminarSubscripcion()">Devolver</button>
+                   </div>
+                   
+                </div>
+                <div class="row">
+                    <h5 class="type">
+                        {{articulo.numeroVisitas}}
+                    </h5>
+                </div>
+             </div>
+
+            </div>
        </div>
    </div>
 </div>

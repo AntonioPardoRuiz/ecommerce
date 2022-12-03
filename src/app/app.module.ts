@@ -8,13 +8,14 @@ import { ContactoComponent } from './contacto/contacto.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { NavheaderComponent } from './navheader/navheader.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     ArticuloComponent,
     ContactoComponent,
     InicioComponent,
-    NavheaderComponent
+    NavheaderComponent,
   ],
   imports: [
     BrowserModule,

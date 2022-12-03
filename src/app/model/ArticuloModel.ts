@@ -11,5 +11,6 @@ export interface ArticuloModel {
     calificacion:number;
     tematica:string;
     img:string;
+    precio:number;
 
 }
