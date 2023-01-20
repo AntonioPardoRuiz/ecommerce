@@ -1,5 +1,9 @@
 <div class="container">
     <div class="row">
+        <!--Añadimos el proceso de indicacion de carga-->
+        <div *ngIf="estaLeyendo">
+                <h3> Cargando datos, espere por favor </h3>
+        </div>
         <div class="col" *ngFor="let articulo of articulos">
                 <div class="card">
                     <div class="card-body" >
@@ -36,16 +40,23 @@
                                 <div class="col">
                                     <button type="button" class="btn btn-warning" data-toggle="button" (click)="eliminarSubscripcion(articulo.id)">Devolver</button>
                                 </div>
-                                        <!-- Solo lo vamos a utilizar una vez para cargar los articulos
+                                        <!-- Solo lo vamos a utilizar una vez para cargar los articulos en base de datos de Firebase
                                         <div class="col">
                                                 <button type="button" class="btn btn-warning" data-toggle="button" (click)="cargarDatos()">Cargar Datos</button>
                                         </div>
-                                -->
+                                                    -->
                             </div>
                         <div class="row">
                             <h5 class="type">
                                     {{articulo.numeroVisitas}}
                             </h5>
+                        </div>
+                        <!--Controlamos los errores del proceso mediante la sentencia-->
+                        <div class ="row">
+                             <div class="alert alert-danger" *ngIf="error">
+                                  <h1> Se esta produciendo un error</h1>
+                                  <h3> {{ error }}</h3>
+                             </div>
                         </div>
                     </div>
                 </div>

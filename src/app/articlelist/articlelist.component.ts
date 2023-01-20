@@ -2,6 +2,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ArticuloModel } from '../model/ArticuloModel';
 import { ArticleService }  from '../services/ArticlesService';
 import {HttpClientModule, HttpClient} from '@angular/common/http';
+import { map } from 'rxjs';
 
 
 @Component({
@@ -20,6 +21,10 @@ export class ArticlelistComponent implements OnInit {
     //Definimos todas las variables.
     pulsa = false;
     boton = true;
+    //Booleanos para el control de errores y de recuperacion
+    error:string='';
+    //Variable para comprobar si esta leyendo
+    estaLeyendo = false;
 
   //Constructor
   constructor(
@@ -29,8 +34,11 @@ export class ArticlelistComponent implements OnInit {
   ngOnInit(): void {
     //Tengo que cargar en el articulos.En el inicio del proceso.
     console.log("Cargamos los articulos")
-    this.articulos = this.articleService.getArticles();
-    console.log(this.articulos);
+    //this.articulos = this.articleService.getArticles();
+    // console.log(this.articulos);
+    //Lo añadimos para que cuando arranque el proceso recupere los datos del servicio
+    this.cargarDatos();
+    
   }
 
 
@@ -72,7 +80,15 @@ export class ArticlelistComponent implements OnInit {
 
   /** ESTA FUNCION UNICAMENTE LA VAMOS A UTILIZAR UNA UNICA VEZ */
   cargarDatos(){
-  //  this.articleService.createAndStoreArticulos();
+    //Recuperamos los datos, que se guaradaran.
+        // Aqui nos tenemos que subscribir al observable.
+      this.estaLeyendo =true;
+        this.articleService.getData().subscribe(articulos => {
+          this.estaLeyendo = false;
+          this.articulos = articulos;
+          }, error => {
+            this.error= error.message;
+         });
   }
   
 

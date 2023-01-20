@@ -15,47 +15,47 @@ export class ArticleService{
 
   constructor(private http:HttpClient) {}
 
-  articulos:Array<ArticuloModel> =[{
-    id:1,
-    nombre: "Agroengineering",
-    creador: "DevArt",
-    fechaCreacion:"2022-01-01",
-    url:"",
-    descripcion:"Software para el sector Agrario",
-    numeroVisitas:5,
-    calificacion:4,
-    tematica:"aplicacion sector agrario",
-    img:"assets/agroengineering.png",
-    precio:3000,
-  },
-  {
-    id: 2,
-    nombre: "Mi Familia",
-    creador: "DevArt",
-    fechaCreacion:"2022-01-01",
-    url:"",
-    descripcion:"Su aplicacion para la gestion de los regalos",
-    numeroVisitas:100,
-    calificacion:3.5,
-    tematica:"Aplicacion Movil para IOS/ANDROID para la gestion de regalos por familia",
-    img:"assets/mifamilia.jpg",
-    precio:3
-  },
-  {
-    id: 3,
-    nombre: "Catchlead",
-    creador: "DevArt",
-    fechaCreacion:"2022-01-01",
-    url:"",
-    descripcion:"Aplicacion para la gestion Comercial",
-    numeroVisitas:3,
-    calificacion:4,
-    tematica:"Aplicacion Movil para IOS/ANDROID para la gestion Comercial",
-    img:"assets/catchlead.jpg",
-    precio:2000
+ //  articulos:Array<ArticuloModel> =[{
+ //   id:1,
+ //   nombre: "Agroengineering",
+ //   creador: "DevArt",
+ //   fechaCreacion:"2022-01-01",
+ //   url:"",
+ //   descripcion:"Software para el sector Agrario",
+ //   numeroVisitas:5,
+ //   calificacion:4,
+ //   tematica:"aplicacion sector agrario",
+ //   img:"assets/agroengineering.png",
+ //   precio:3000,
+ // },
+ // {
+ //   id: 2,
+ //   nombre: "Mi Familia",
+ //   creador: "DevArt",
+ //   fechaCreacion:"2022-01-01",
+ //   url:"",
+ //   descripcion:"Su aplicacion para la gestion de los regalos",
+ //   numeroVisitas:100,
+ //   calificacion:3.5,
+ //   tematica:"Aplicacion Movil para IOS/ANDROID para la gestion de regalos por familia",
+ //   img:"assets/mifamilia.jpg",
+ //   precio:3
+ // },
+ // {
+ //   id: 3,
+ //   nombre: "Catchlead",
+ //   creador: "DevArt",
+ //   fechaCreacion:"2022-01-01",
+ //   url:"",
+ //   descripcion:"Aplicacion para la gestion Comercial",
+ //   numeroVisitas:3,
+ //   calificacion:4,
+ //   tematica:"Aplicacion Movil para IOS/ANDROID para la gestion Comercial",
+ //   img:"assets/catchlead.jpg",
+ //   precio:2000
 
-  },
-] 
+ // },
+//] 
 
 //Lo usaremos unicamente una vez para cargar los articulos
  // createAndStoreArticulos()
@@ -77,10 +77,10 @@ export class ArticleService{
  // }  
     /* METODOS DEL SERVICIO */
     //Obtenemos los articulos. 
-    getArticles(){
-        return this.articulos;
+   // getArticles(){
+   //     return this.articulos;
 
-    }
+//    }
 
     getColor(){
         console.log("getColor");
@@ -98,8 +98,8 @@ export class ArticleService{
     
         console.log("getsubscribirse");
         //this.pulsa = true;
-        console.log(this.articulos[id].numeroVisitas);
-        let numeroVisitas = this.articulos[id].numeroVisitas;
+        console.log(this.loadedArticulos[id].numeroVisitas);
+        let numeroVisitas = this.loadedArticulos[id].numeroVisitas;
         console.log("Numero de Visitas");
         console.log(numeroVisitas);
         //Incrementamos le valor de numero de visitas
@@ -115,8 +115,8 @@ export class ArticleService{
         //Incrementamos le valor de numero de visitas
         console.log("deleteSubscripcion");
         //this.pulsa = true;
-        console.log(this.articulos[id].numeroVisitas);
-        let numeroVisitas = this.articulos[id].numeroVisitas;
+        console.log(this.loadedArticulos[id].numeroVisitas);
+        let numeroVisitas = this.loadedArticulos[id].numeroVisitas;
         console.log("Numero de Visitas");
         console.log(numeroVisitas);
         //Decrementamos le valor de numero de visitas
@@ -128,21 +128,26 @@ export class ArticleService{
         
 }
 
-     getData(){
+  getData(){
+      console.log("Llamamos a getData");
       return this.http
             .get<{[key:string]:ArticuloModel}>('https://bbddangular-913ce-default-rtdb.europe-west1.firebasedatabase.app/articulos.json') 
             .pipe(
-                  map((responseData: { [key: string]: ArticuloModel }) =>{
+                  map((responseData: { [id: string]: ArticuloModel }) =>{
                   const articulosArray: ArticuloModel[]= [];
                   for (const key in responseData){
+                        console.log("Datos de Respuesta");
+                        console.log(responseData[key]);
                         if (responseData.hasOwnProperty(key)){
-                              articulosArray.push({...responseData[key]})
+                            articulosArray.push({...responseData[key]});
+                            this.loadedArticulos.push({...responseData[key]});
+                        }
                   }
-                }
+
             return articulosArray;
     }))
      
-    }
+  }
 
 
 
