@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="row">
+        <div class="col" *ngFor="let articulo of articulos">
+                <div class="card">
+                    <div class="card-body" >
+                        <div *ngIf="pulsa; else nopulsa">
+                            <h3 class="card-title" [ngStyle]="{backgroundColor: getColor()}">YOUR APPS:GRACIAS POR COMPRAR </h3>
+                        </div>
+                    <ng-template #nopulsa>
+                        <h3 class="card-title" [ngStyle]="{backgroundColor: getColorSubscrito()}">{{articulo.nombre}}</h3>
+                    </ng-template>
+                    <br>
+                    <img src={{articulo.img}} width=200px height=200px class="card-img-top" alt="Responsive image">
+                    <div class="row">
+                        <h5 class="card-text">{{articulo.nombre}}</h5>
+                    </div>
+                    <div class="row">
+                        <h5 class="card-text">Creacion del Software: {{articulo.fechaCreacion}}</h5>
+                    </div>
+                    <div class="row">
+                        <h5 class="card-text">Numero de Ventas: {{articulo.numeroVisitas}}</h5>
+                    </div>
+                    <div class="row">
+                        <h5 class="card-text">Precio: {{articulo.precio}} Euros</h5>
+                    </div>
+                    <div class="row">
+                        <h5 class="card-text">Autor: {{articulo.creador}}</h5>
+                    </div>
+                    <br>
+                    <div class="container">
+                        <div *ngIf="boton">
+                            <div class="row">
+                                <div class="col">
+                                    <button type="button" class="btn btn-primary" data-toggle="button" (click)="subscribirse(articulo.id)">Instalar</button>
+                                </div>
+                                <div class="col">
+                                    <button type="button" class="btn btn-warning" data-toggle="button" (click)="eliminarSubscripcion(articulo.id)">Devolver</button>
+                                </div>
+                                        <!-- Solo lo vamos a utilizar una vez para cargar los articulos
+                                        <div class="col">
+                                                <button type="button" class="btn btn-warning" data-toggle="button" (click)="cargarDatos()">Cargar Datos</button>
+                                        </div>
+                                -->
+                            </div>
+                        <div class="row">
+                            <h5 class="type">
+                                    {{articulo.numeroVisitas}}
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </div>
+ </div>
+</div>

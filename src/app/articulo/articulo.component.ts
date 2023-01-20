@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticuloModel } from '../model/ArticuloModel';
+//Importamos el proceso de HttpClient
+import {HttpClientModule, HttpClient} from '@angular/common/http';
+import { ArticleService } from '../services/ArticlesService';
 
 @Component({
   selector: 'app-articulo',
@@ -12,7 +15,8 @@ export class ArticuloComponent implements OnInit {
   boton = true;
 
 
-  constructor() { }
+  constructor(private http:HttpClient, private articleService:
+    ArticleService) {}
 
   ngOnInit(): void {
     console.log("articulo");
@@ -32,7 +36,6 @@ export class ArticuloComponent implements OnInit {
     img:"assets/agroengineering.png",
     precio:3000
   }
-
   //En cuanto se pulse al boton activamos un switch, q
   subscribirse(){
     console.log("subscribirse");

@@ -5,21 +5,33 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ArticuloComponent } from './articulo/articulo.component';
 import { ContactoComponent } from './contacto/contacto.component';
-import { InicioComponent } from './inicio/inicio.component';
 import { NavheaderComponent } from './navheader/navheader.component';
+import { ArticlelistComponent } from './articlelist/articlelist.component';
+import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home.component';
+//importamos el http client
+import {HttpClientModule} from '@angular/common/http';
 
-
+const appRoutes: Routes = [
+  { path: '', component: ArticlelistComponent},
+  { path: 'home', component: HomeComponent},
+  { path: 'articulo', component: ArticuloComponent},
+  { path: 'contacto', component: ContactoComponent}, 
+]
 @NgModule({
   declarations: [
     AppComponent,
     ArticuloComponent,
     ContactoComponent,
-    InicioComponent,
     NavheaderComponent,
+    ArticlelistComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
