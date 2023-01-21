@@ -17,6 +17,8 @@ export class ArticlelistComponent implements OnInit {
     @Output() ArticleQuantityChange = new EventEmitter<string>();
       //Definimos el arrary articulos que recuperamos del servicio,
     articulos:Array<ArticuloModel> =[];
+    //Valor que recuperamos para filtar en la base de datos. 
+    nombre:string='';
     
     //Definimos todas las variables.
     pulsa = false;
@@ -45,13 +47,11 @@ export class ArticlelistComponent implements OnInit {
   getColor(){
    // console.log("getColor");
    const color = this.articleService.getColor();
-   console.log("Obtenemos el valor"+color);
     return color;
   }
     
   getColorSubscrito(){
     const colorSubscrito = this.articleService.getColorSubscrito();
-    console.log("Obtenemos el valor"+colorSubscrito);
     return colorSubscrito;
   }
 
@@ -90,8 +90,22 @@ export class ArticlelistComponent implements OnInit {
             this.error= error.message;
          });
   }
-  
 
+  getDataSearch(){
+    console.log("Get Data Search");
+    //En este caso unicamente tenemos que recorrer los datos y quedarnos con los nombres. 
+      for(let i=0; i<this.articulos.length;i++){
+        let objeto = this.articulos[i];
+        //Inicializamos this.articulos
+
+        console.log(objeto.nombre);
+        console.log(this.nombre);
+        if( objeto.nombre.localeCompare(this.nombre)){
+           console.log("Existe");
+            this.articulos[i] = objeto; 
+        }   
+    } 
+}
 
 
 }

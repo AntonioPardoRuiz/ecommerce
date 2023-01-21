@@ -148,25 +148,7 @@ export class ArticleService{
     }))    
   }
 
-  getDataSearch(){
-    console.log("Realizamos unicamente busqueda por proceso");
-    return this.http
-          .get<{[key:string]:ArticuloModel}>('https://bbddangular-913ce-default-rtdb.europe-west1.firebasedatabase.app/articulos.json') 
-          .pipe(
-                map((responseData: { [id: string]: ArticuloModel }) =>{
-                const articulosArray: ArticuloModel[]= [];
-                for (const key in responseData){
-                      console.log("Datos de Respuesta");
-                      console.log(responseData[key]);
-                      if (responseData.hasOwnProperty(key)){
-                          articulosArray.push({...responseData[key]});
-                          this.loadedArticulos.push({...responseData[key]});
-                      }
-                }
-
-          return articulosArray;
-  }))    
-}
+   
 
 
 
