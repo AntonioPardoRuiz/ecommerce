@@ -19,12 +19,23 @@
                <label for="exampleInputPais">Pais</label>
                <input type="pais" class="form-control" id="exampleInputPais" aria-describedby="emailHelp" placeholder="Pais">
              </div>
+
             <div class="form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label" for="exampleCheck1">Acepta los terminos de Your Apps</label>
+              <label for="exampleInputPais">Nuestra oficina en Alicante</label>
+              <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+                <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+              </agm-map>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
+          <!-- Añadimos el proceso de google earth-->
+          <!-- this creates a google map on the page with the given lat/lng from -->
+              <!-- the component as the initial center of the map: -->
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Acepta los terminos de Your Apps</label>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+                
           <br>
        </div>
    </div>

@@ -11,6 +11,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 //importamos el http client
 import {HttpClientModule} from '@angular/common/http';
+//Modulo para el control desde google earth
+import { AgmCoreModule } from '@agm/core';
 
 const appRoutes: Routes = [
   { path: '', component: ArticlelistComponent},
@@ -31,7 +33,10 @@ const appRoutes: Routes = [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBEVLuALTNr5HLHfj6OgQ53ah-HvTS0lG8'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
